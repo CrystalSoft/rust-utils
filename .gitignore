@@ -1,0 +1,9 @@
+.idea
+Cargo.lock
+.env
+/target
+/target/
+/tmp
+**/*.rs.bk
+/*.data
+/*.gz
