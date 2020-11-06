@@ -3,8 +3,18 @@ use std::{io, io::Read};
 use std::path::Path;
 use std::str;
 
-pub fn get_filename<S: AsRef<str>>(filename: S) -> Option<String> {
-    match Path::new(filename.as_ref()).file_name() {
+pub fn get_filepath<S: AsRef<str>>(file_path: S) -> Option<String> {
+    match Path::new(file_path.as_ref()).parent() {
+        Some(file_path) => match file_path.to_str() {
+            Some(file_path) => Some(file_path.into()),
+            None => None,
+        },
+        None => None,
+    }
+}
+
+pub fn get_filename<S: AsRef<str>>(file_name: S) -> Option<String> {
+    match Path::new(file_name.as_ref()).file_name() {
         Some(file_name) => match file_name.to_str() {
             Some(file_name) => Some(file_name.into()),
             None => None,
